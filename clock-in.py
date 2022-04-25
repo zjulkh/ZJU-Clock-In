@@ -110,6 +110,10 @@ class DaKa(object):
         new_info['szgjcs'] = ""
         self.info = new_info
         return new_info
+    def saveFile(message):
+        # 保存email内容
+        with open("email.txt", 'a+', encoding="utf-8") as email:
+            email.write(message+'\n')
 
     def _rsa_encrypt(self, password_str, e_str, M_str):
         password_bytes = bytes(password_str, 'ascii')
@@ -170,10 +174,12 @@ def main(username, password):
         res = dk.post()
         if str(res['e']) == '0':
             print('已为您打卡成功！')
+            saveFile("Dear Zcx, this message means your daily clock has finished!")
         else:
             print(res['m'])
     except Exception:
         print('数据提交失败')
+        saveFile("Dear Zcx, this message means your daily clock has failed!")
         raise Exception
 
 
