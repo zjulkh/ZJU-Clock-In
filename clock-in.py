@@ -112,7 +112,7 @@ class DaKa(object):
         return new_info
     def saveFile(message):
         # 保存email内容
-        with open("email.txt", 'a+', encoding="utf-8") as email:
+        with open("./email.txt", 'a+', encoding="utf-8") as email:
             email.write(message+'\n')
 
     def _rsa_encrypt(self, password_str, e_str, M_str):
