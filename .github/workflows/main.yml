@@ -27,7 +27,7 @@ jobs:
         run: |
           python3 clock-in.py ${ACCOUNT} ${PASSWORD}
       - name: Get Date
-        run: echo "::set-env name=REPORT_DATE::$(TZ=':Asia/Shanghai' date '+%Y-%m-%d %T')"
+        run: echo "REPORT_DATE=$(TZ=':Asia/Shanghai' date '+%Y-%m-%d %T')" >> $GITHUB_ENV
       - name: Send Email
         uses: actions/checkout@master
         with:
