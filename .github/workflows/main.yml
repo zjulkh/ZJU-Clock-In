@@ -26,3 +26,17 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
         run: |
           python3 clock-in.py ${ACCOUNT} ${PASSWORD}
+      - name: Get Date
+        run: echo "::set-env name=REPORT_DATE::$(TZ=':Asia/Shanghai' date '+%Y-%m-%d %T')"
+      - name: Send Email
+        uses: actions/checkout@master
+        with:
+          server_address: smtp.163.com
+          server_port: 465
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: ZJU clock in result. (${{env.REPORT_DATE}})
+          body: file://email.txt
+          to: zjajzcx3566@163.com
+          from: GitHub Actions
+          content_type: text/html
