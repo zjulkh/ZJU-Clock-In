@@ -28,15 +28,3 @@ jobs:
           python3 clock-in.py ${ACCOUNT} ${PASSWORD}
       - name: Get Date
         run: echo "REPORT_DATE=$(TZ=':Asia/Shanghai' date '+%Y-%m-%d %T')" >> $GITHUB_ENV
-      - name: Send Email
-        uses: dawidd6/action-send-mail@master
-        with:
-          server_address: smtp.163.com
-          server_port: 465
-          username: ${{secrets.MAIL_USERNAME}}
-          password: ${{secrets.MAIL_PASSWORD}}
-          subject: ZJU clock in result. (${{env.REPORT_DATE}})
-          body: file://email.txt
-          to: 1836205414@qq.com
-          from: GitHub Actions
-          content_type: text/html
