@@ -24,7 +24,10 @@ jobs:
         env:
           ACCOUNT: ${{ secrets.ACCOUNT }}
           PASSWORD: ${{ secrets.PASSWORD }}
+          ACCOUNT1: ${{ secrets.ACCOUNT1 }}
+          PASSWORD1: ${{ secrets.PASSWORD1 }}
         run: |
           python3 clock-in.py ${ACCOUNT} ${PASSWORD}
+          python3 clock-in.py ${ACCOUNT1} ${PASSWORD1}       
       - name: Get Date
         run: echo "REPORT_DATE=$(TZ=':Asia/Shanghai' date '+%Y-%m-%d %T')" >> $GITHUB_ENV
